@@ -4,31 +4,34 @@ import random
 # on definie la limite initiale
 limites1 = "1"
 limites2 = "100"
-
+limites3 = ''
 
 # on cree une fonction pour le choix de la borne
 def les_limites():
     global limites2
     global limites1
-
     # on demande la borne
-    limites1 = input("Quelle est la limite de nombre que vous voulez : ")
-    limites2 = input("Quelle est la limite de nombre que vous voulez : ")
+    limites1 = input("Quelle est la premiere limite de nombre que vous voulez : ")
+    limites2 = input("Quelle est la deuxieme limite de nombre que vous voulez : ")
+
     # on retourne la variable
-    return limites2
-    return limites1
+    if int(limites2) < int(limites1):
+        limites3 = limites2
+        limites2 = limites1
+        limites1 = limites3
+
 
 
 # on cree une variable pour le jeu de devinette
 def jeu_de_devinettes():
     # on genere le nombre
     the_number = random.randint(int(limites1), int(limites2))
-    guess = 0
+    guess = -1
     essaie = 0
     jouer_encore = ""
     jouer = True
     # on cree le jeu avec les conditions requise pour activer le jeu
-    while jouer == True:
+    while jouer:
         while guess != the_number:
             # on demande le guess
             guess = int(input("Entrez un nombre svp : "))
@@ -50,7 +53,7 @@ def jeu_de_devinettes():
                 print("Au revoir")
                 jouer = False
             # si c'est oui on rejoue
-            elif jouer_encore == "o":
+            else:
                 demande()
                 jeu_de_devinettes()
 
