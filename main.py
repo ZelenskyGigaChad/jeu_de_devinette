@@ -16,7 +16,7 @@ def les_limites():
     limites1 = input("Quelle est la premiere limite de nombre que vous voulez : ")
     limites2 = input("Quelle est la deuxieme limite de nombre que vous voulez : ")
 
-    # on retourne la variable
+    # on iverse les variables si la premiere est plus grande que la deuxieme
     if int(limites2) < int(limites1):
         limites1, limites2 = limites2, limites1
 
@@ -29,10 +29,6 @@ def jeu_de_devinettes():
     # on genere le nombre
     global the_number
     the_number = random.randint(int(limites1), int(limites2))
-    guess = -1
-    essaie = 0
-    jouer_encore = ""
-    jouer = True
     # on cree le jeu avec les conditions requise pour activer le jeu
     return the_number
 
