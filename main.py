@@ -44,9 +44,10 @@ def demande():
         les_limites()
 
 
-demande()
-jeu_de_devinettes()
+
 while jouer:
+    demande()
+    jeu_de_devinettes()
     while guess != the_number:
         # on demande le guess
         guess = int(input("Entrez un nombre svp : "))
@@ -64,9 +65,6 @@ while jouer:
             print("Game Over! Le nombre etait", the_number, ". Vous avez reussit en ", essaie, "essaies")
             jouer_encore = input("Voulez-vous rejouer? O ou N : ").lower()
         # si c'est non on quitte
-        if jouer_encore == "n":
-            print("Au revoir")
-            jouer = False
-        # si c'est oui on rejoue
-        if jouer_encore == 'o':
-            demande()
+    if jouer_encore == "n":
+        print("Au revoir")
+        jouer = False
