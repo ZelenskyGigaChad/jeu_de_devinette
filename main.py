@@ -1,10 +1,12 @@
-# on importe les librairies requise
+# on importe les librairies requises
 import random
-
+guess = -1
+essaie = 0
+jouer_encore = ""
+jouer = True
 # on definie la limite initiale
 limites1 = "1"
 limites2 = "100"
-limites3 = ''
 
 # on cree une fonction pour le choix de la borne
 def les_limites():
@@ -16,46 +18,23 @@ def les_limites():
 
     # on retourne la variable
     if int(limites2) < int(limites1):
-        limites3 = limites2
-        limites2 = limites1
-        limites1 = limites3
+        limites1, limites2 = limites2, limites1
+
+    jeu_de_devinettes()
 
 
 
 # on cree une variable pour le jeu de devinette
 def jeu_de_devinettes():
     # on genere le nombre
+    global the_number
     the_number = random.randint(int(limites1), int(limites2))
     guess = -1
     essaie = 0
     jouer_encore = ""
     jouer = True
     # on cree le jeu avec les conditions requise pour activer le jeu
-    while jouer:
-        while guess != the_number:
-            # on demande le guess
-            guess = int(input("Entrez un nombre svp : "))
-            # si il est plus petit on le fait retenter sa chance en ajoutant 1 essaies
-            if guess > the_number:
-                print("Plus petit")
-                essaie += 1
-            # si il est plus grand on le fait retenter sa chance en ajoutant 1 essaies
-            elif guess < the_number:
-                print("Plus grand")
-                essaie += 1
-            # si c'est le bon nombre, on lui dis son nombre d'essaies et on lui demande si il veut rejouer
-            else:
-                essaie += 1
-                print("Game Over! Le nombre etait", the_number, ". Vous avez reussit en ", essaie, "essaies")
-                jouer_encore = input("Voulez-vous rejouer? O ou N : ").lower()
-            # si c'est non on quitte
-            if jouer_encore == "n":
-                print("Au revoir")
-                jouer = False
-            # si c'est oui on rejoue
-            else:
-                demande()
-                jeu_de_devinettes()
+    return the_number
 
 
 # on appelle les deux fonctions dans le bon ordre
@@ -67,3 +46,27 @@ def demande():
 
 demande()
 jeu_de_devinettes()
+while jouer:
+    while guess != the_number:
+        # on demande le guess
+        guess = int(input("Entrez un nombre svp : "))
+        # si il est plus petit on le fait retenter sa chance en ajoutant 1 essaies
+        if guess > the_number:
+            print("Plus petit")
+            essaie += 1
+        # si il est plus grand on le fait retenter sa chance en ajoutant 1 essaies
+        elif guess < the_number:
+            print("Plus grand")
+            essaie += 1
+        # si c'est le bon nombre, on lui dis son nombre d'essaies et on lui demande si il veut rejouer
+        else:
+            essaie += 1
+            print("Game Over! Le nombre etait", the_number, ". Vous avez reussit en ", essaie, "essaies")
+            jouer_encore = input("Voulez-vous rejouer? O ou N : ").lower()
+        # si c'est non on quitte
+        if jouer_encore == "n":
+            print("Au revoir")
+            jouer = False
+        # si c'est oui on rejoue
+        if jouer_encore == 'o':
+            demande()
