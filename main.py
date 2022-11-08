@@ -60,6 +60,7 @@ while jouer:
             essaie += 1
             print("Game Over! Le nombre etait", the_number, ". Vous avez reussit en ", essaie, "essaies")
             jouer_encore = input("Voulez-vous rejouer? O ou N : ").lower()
+            essaie = 0
         # si c'est non on quitte
     if jouer_encore == "n":
         print("Au revoir")
